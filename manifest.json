@@ -1,0 +1,10 @@
+{
+	"name": "okei_mentor",
+	"short_name": "okei_mentor",
+	"description": "",
+	"id": "okei_mentor",
+	"start_url": ".",
+	"display": "standalone",
+	"background_color": "#000000",
+	"theme_color": "#000000"
+}
