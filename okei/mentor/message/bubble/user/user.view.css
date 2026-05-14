@@ -1,0 +1,22 @@
+[okei_mentor_chat_bubble_user] {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
+[okei_mentor_message_bubble_user] {
+    max-width: 80%;
+    width: auto;
+    border-radius: 12px;
+    padding: 8px 12px;
+    margin: 4px 8px 4px auto;
+    background-color: var(--mol_theme_hover);
+    border-radius: var(--mol_gap_block);
+}
+
+[okei_mentor_message_bubble_user_string] {
+    display: block;
+    word-wrap: break-word;
+    word-break: break-word;
+    white-space: pre-wrap;
+}

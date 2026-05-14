@@ -1,0 +1,12 @@
+$okei_mentor $mol_book2_catalog
+	title \AI Mentor
+	menu_title <= title
+	plugins /
+		<= Theme $mol_theme_auto
+	menu_foot /
+		<= Lights $mol_lights_toggle
+	spreads *
+		chat <= Chat $okei_mentor_chat
+		progress <= Progress $okei_mentor_page
+			title \Мой прогресс
+	Placeholder null

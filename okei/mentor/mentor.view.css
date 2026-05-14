@@ -1,0 +1,20 @@
+:root {
+	/* отключение подсветки тапов на мобильных устройствах */
+	-webkit-tap-highlight-color: transparent;
+    --mol_theme_hue_spread: 525deg;
+}
+
+[okei_mentor_page] {
+	margin-right: auto;
+    margin-left: auto;
+}
+
+[okei_mentor_menu] {
+	flex-basis: 20em;
+	margin-left: 0;
+}
+
+[mol_book2] > *:not(:first-of-type):before,
+[mol_book2] > *:not(:last-of-type)::after {
+	background: none;
+}

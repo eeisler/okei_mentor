@@ -1,0 +1,8 @@
+[okei_mentor_chat_message_input] {
+    flex-shrink: 1;
+    border-radius: 12px;
+}
+
+[okei_mentor_chat_send_button]{
+    margin-left: var(--mol_gap_block);
+}
