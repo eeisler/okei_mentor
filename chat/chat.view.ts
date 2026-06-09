@@ -1,5 +1,23 @@
 namespace $.$$ {
-    
+    type ChatHistoryMessage = {
+        id: string,
+        role: string,
+        content: string,
+        timestamp: string, // todo: cast to datetime 
+    }
+
+    type ChatHistory = {
+        user_id: number,
+        messages: ChatHistoryMessage[],
+    }
+
+    type Message = {
+        id: string,
+        text: string,
+        time: string,
+        me: boolean,
+    }
+
     export class $okei_mentor_chat extends $.$okei_mentor_chat {
         
         @ $mol_mem
@@ -11,14 +29,13 @@ namespace $.$$ {
         }
     
         @ $mol_mem
-        async load_history() {
+        load_history(): Message[] {
             console.log('LOAD_HISTORY CALLED!');
-            const response =  await fetch('http://localhost:8000/chat/history')
-            const data = await response.json()
+            const data = $mol_fetch.json('http://localhost:8000/chat/history') as ChatHistory;
 
             console.log(data.messages);
             if (data.messages) {
-                const history = data.messages.map((msg: any, index: number) => ({
+                const history = data.messages.map((msg: ChatHistoryMessage, index: number) => ({
                     id: msg.id, 
                     text: msg.content,
                     time: new Date(msg.timestamp).toLocaleDateString(),
@@ -30,6 +47,7 @@ namespace $.$$ {
                     })
                 return history
             }
+            return []
         }
 
         @ $mol_mem
@@ -42,7 +60,7 @@ namespace $.$$ {
         }
         
         @ $mol_action
-        async draft_send( event?: Event ) {
+        draft_send( event?: Event ) {
             const text = this.draft_text().trim()
             if( !text ) return
             
@@ -68,13 +86,11 @@ namespace $.$$ {
                 this.draft_text( '' )
             })
             
-            const response = await fetch('http://localhost:8000/chat', {
+            const data = $mol_fetch.json('http://localhost:8000/chat', {
                 method: 'POST',
                 headers: {'Content-Type': 'application/json'},
                 body: JSON.stringify({ message:text })
-            })
-
-            const data = await response.json()
+            }) as { message: string }
 
             this.messages([...this.messages(), {
                 id: Date.now() + 1,
@@ -93,7 +109,7 @@ namespace $.$$ {
         @ $mol_mem
         bubble_text( id: any ): string {
             const messages = this.messages()  
-            const msg = messages.find( (m: any) => m.id === id )
+            const msg = messages.find( (m: Message) => m.id === id )
             if( !msg ) return ""
             return msg.text
         }
