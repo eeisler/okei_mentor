@@ -1,0 +1,17 @@
+$okei_mentor_auth $okei_mentor_page 
+	title \Вход
+	body /
+		<= Login_input $mol_textarea
+			hint \Логин
+			value? <=> login_text? \
+		<= Password_input $mol_textarea
+			hint \Пароль
+			value? <=> pass_text? \
+		<= Send_button $okei_mentor_button
+			title \
+			icon <= Add_source_icon $mol_icon_arrow_up
+			click? <=> draft_send? null
+	plugins /
+		<= Send_key $mol_hotkey
+			key *
+				enter? <=> draft_send? null
