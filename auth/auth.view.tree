@@ -1,11 +1,15 @@
 $okei_mentor_auth $okei_mentor_page 
 	title \Вход
 	body /
-		<= Login_input $mol_textarea
-			hint \Логин
+		<= login_content $mol_text
+			text \Логин
+		<= Login_input $mol_string
+			hint \
 			value? <=> login_text? \
-		<= Password_input $mol_textarea
-			hint \Пароль
+		<= pass_content $mol_text
+			text \Пароль
+		<= Password_input $mol_password
+			hint \
 			value? <=> pass_text? \
 		<= Send_button $okei_mentor_button
 			title \

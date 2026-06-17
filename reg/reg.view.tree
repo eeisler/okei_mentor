@@ -1,0 +1,28 @@
+$okei_mentor_reg $okei_mentor_page 
+	title \Регистрация
+	body /
+		<= login_content $mol_text
+			text \Логин
+		<= Login_input $mol_string
+			hint \
+			value? <=> login_text? \
+		<= Group_content $mol_text
+			text \Группа
+		<= Group_input $mol_search
+			hint \
+			query? <=> group_filter? \
+			suggests <= group_options /
+			value? <=> selected_group_id? \
+		<= password_content $mol_text
+			text \Пароль
+		<= Password_input $mol_password
+			hint \
+			value? <=> pass_text? \
+		<= Send_button $okei_mentor_button
+			title \
+			icon <= Add_source_icon $mol_icon_arrow_up
+			click? <=> draft_send? null
+	plugins /
+		<= Send_key $mol_hotkey
+			key *
+				enter? <=> draft_send? null

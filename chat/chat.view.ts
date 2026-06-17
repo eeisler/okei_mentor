@@ -30,8 +30,20 @@ namespace $.$$ {
     
         @ $mol_mem
         load_history(): Message[] {
+            const token = localStorage.getItem('auth_token')
+            console.log(token)
+
+            if (!token) {
+                console.log('No token found')
+                return []
+            }
+
             console.log('LOAD_HISTORY CALLED!');
-            const data = $mol_fetch.json('http://localhost:8000/chat/history') as ChatHistory;
+            const data = $mol_fetch.json('http://localhost:8000/chat/history', {
+                 headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            }) as ChatHistory;
 
             console.log(data.messages);
             if (data.messages) {
@@ -61,6 +73,7 @@ namespace $.$$ {
         
         @ $mol_action
         draft_send( event?: Event ) {
+            const token = localStorage.getItem('auth_token')
             const text = this.draft_text().trim()
             if( !text ) return
             
@@ -88,7 +101,10 @@ namespace $.$$ {
             
             const data = $mol_fetch.json('http://localhost:8000/chat', {
                 method: 'POST',
-                headers: {'Content-Type': 'application/json'},
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`
+                },
                 body: JSON.stringify({ message:text })
             }) as { message: string }
 
