@@ -1,0 +1,12 @@
+$okei_mentor_progress $okei_mentor_page
+	title \Прогресс
+	body /
+		<= List $mol_list
+			rows <= rows /
+	
+	Row* $mol_row
+		sub /
+			<= Skill* $mol_text
+				text <= skill_name* \Навык
+			<= Bar* $mol_portion
+				portion <= level_portion* 0

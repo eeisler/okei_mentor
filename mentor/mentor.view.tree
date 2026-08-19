@@ -1,0 +1,20 @@
+$okei_mentor $mol_book2_catalog
+	title \OKEI AI Mentor
+	menu_title <= title
+	menu_tools /
+		<= Lights $mol_lights_toggle
+		<= LogoutButton $okei_mentor_button
+			title \
+			icon <= Add_source_icon $mol_icon_exit_to_app
+			click? <=> draft_logout? null
+	-
+	plugins /
+		<= Theme $mol_theme_auto
+	menu_foot /
+	-
+	spreads *
+	Chat $okei_mentor_chat
+	Progress $okei_mentor_progress
+	Login $okei_mentor_auth
+	Signup $okei_mentor_reg
+	Placeholder null

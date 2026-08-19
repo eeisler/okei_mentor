@@ -1,0 +1,5 @@
+[okei_mentor_page] {
+	flex-basis: 50rem;
+    background-color: var(--mol_theme_back);
+    box-shadow: none;
+}

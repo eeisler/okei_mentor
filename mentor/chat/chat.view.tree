@@ -1,0 +1,20 @@
+$okei_mentor_chat $okei_mentor_page 
+	title \Чат
+	foot /
+		<= Message_input $mol_textarea
+			hint \Введите сообщение
+			value? <=> draft_text? \
+		<= Send_button $okei_mentor_button
+			title \
+			icon <= Add_source_icon $mol_icon_arrow_up
+			click? <=> draft_send? null
+	body /
+		<= Bubbles $mol_list rows <= bubbles /
+	Bubble_user* $okei_mentor_message_bubble_user
+		text <= bubble_text* \
+	Bubble_bot* $okei_mentor_message_bubble_bot
+		text <= bubble_text* \
+	plugins /
+		<= Send_key $mol_hotkey
+			key *
+				enter? <=> draft_send? null
